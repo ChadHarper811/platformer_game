@@ -36,6 +36,7 @@ class Player {
         this.draw();
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
+
         if (this.position.y + this.height + this.velocity.y <= canvas.height) {
             if (this.position.y < 0) {
                 this.position.y = 0;
@@ -45,5 +46,17 @@ class Player {
         } else {
             this.velocity.y = 0;
         }
+        
+        if (this.position.x < this.width) {
+            this.position.x = this.width;
+        }
+
+        if (this.position.x >= canvas.width - this.width * 2) {
+            this.position.x = canvas.width - this.width * 2;
+        }
     }
 }
+
+const player = new Player();
+
+const startGame = () => {}
