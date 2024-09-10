@@ -65,6 +65,8 @@ const animate = () => {
     player.update();
     if (keys.rightKey.pressed && player.position.x < proportionalSize(400)) {
         player.velocity.x = 5;
+    } else if (keys.leftKey.pressed && player.position.x > proportionalSize(100)) {
+        player.velocity.x = -5;
     }
 }
 
