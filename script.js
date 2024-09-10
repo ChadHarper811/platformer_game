@@ -57,7 +57,16 @@ class Player {
     }
 }
 
-class Platform {} 
+class Platform {
+    constructor (x,y) {
+        this.position = {
+            x,
+            y,
+        };
+        this.width = 200;
+        this.height = proportionalSize(40);
+    }
+} 
 
 const player = new Player();
 
