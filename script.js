@@ -70,7 +70,11 @@ class Platform {
         ctx.fillStyle = "#acd157";
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
-} 
+}
+
+class CheckPoint {
+    constructor(x,y,z) {}
+}
 
 const player = new Player();
 
