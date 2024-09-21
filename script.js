@@ -113,7 +113,9 @@ const checkpointPositions = [
     {x:1170, y:proportionalSize(80), z:1},
     {x:2900, y:proportionalSize(330), z:2},
     {x:4800, y:proportionalSize(80), z:3},
-]
+];
+
+const checkpoints = checkpointPositions.map((checkpoint) => new CheckPoint(checkpoint.x, checkpoint.y, checkpoint.z));
 
 const animate = () => {
     requestAnimationFrame(animate);
