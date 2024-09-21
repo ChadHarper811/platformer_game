@@ -10,28 +10,28 @@ const gravity = 0.5;
 let isCheckpointCollisionDetectionActive = true;
 
 const proportionalSize = size => {
-    return innerHeight < 500 ? 
-    Math.ceil((size / 500) * innerHeight) :
-    size;
+    return innerHeight < 500 ? Math.ceil((size / 500) * innerHeight) : size;
 };
 
 class Player {
     constructor () {
         this.position = {
-            {x:proportionalSize(10),
-            y:proportionalSize(400),
+            x: proportionalSize(10),
+            y: proportionalSize(400)
         };
         this.velocity = {
-            {x:0,
-            y:0,
+            x: 0,
+            y: 0
         };
         this.width = proportionalSize(40);
         this.height = proportionalSize(40);
     }
+
     draw() {
         ctx.fillStyle = "#99c9ff";
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
     }
+
     update() {
         this.draw();
         this.position.x += this.velocity.x;
@@ -55,7 +55,7 @@ class Player {
             this.position.x = canvas.width - this.width * 2;
         }
     }
-};
+}
 
 class Platform {
     constructor (x,y) {
@@ -171,6 +171,7 @@ const animate = () => {
             player.velocity.y = gravity;
         };
     });
+
     checkpoints.forEach((checkpoint, index, checkpoints) => {
         const checkpointDetectionRules = [
             player.position.x >= checkpoint.position.x,
@@ -181,6 +182,17 @@ const animate = () => {
             index === 0 || checkpoints[index - 1].claimed === true
         ];
     });
+
+    if (checkpointDetectionRules.every((rule) => rule)) {
+        checkpoint.claim();
+        if ( index === checkpoints.length - 1) {
+            isCheckpointCollisionDetectionActive = false;
+            showCheckpointScreen("You reached the final checkpoint!");
+            movePlayer("ArrowRight", 0, false);
+        } else if (player.position.x >= checkpoint.position.x && player.position.x <= checkpoint.position.x + 40) {
+            showCheckpointScreen("You reached a checkpoint!")
+        }
+    };
 }
 
 const keys = {
@@ -226,7 +238,6 @@ const startGame = () => {
 const showCheckpointScreen = (msg) => {
     checkpointScreen.style.display = "block";
     checkpointMessage.textContent = msg;
-
     if (isCheckpointCollisionDetectionActive) {
         setTimeout(() => (checkpointScreen.style.display = "none"), 2000);
     }
