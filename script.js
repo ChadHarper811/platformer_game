@@ -87,7 +87,11 @@ const platformPositions = [
     {x:4200, y:proportionalSize(400)},
     {x:4400, y:proportionalSize(200)},
     {x:4700, y:proportionalSize(150)},
-]
+];
+
+const platforms = platformPositions.map(
+    (platform) => new Platform(platform.x, platform.y)
+);
 
 const animate = () => {
     requestAnimationFrame(animate);
