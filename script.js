@@ -106,11 +106,19 @@ const animate = () => {
         player.velocity.x = -5;
     } else {
         player.velocity.x = 0;
+
+        if (keys.rightKey.pressed && isCheckpointCollisionDetectionActive) {
+            platforms.forEach((platform) => {
+                platform.position.x -= 5
+            });
+        } else if (keys.leftKey.pressed && isCheckpointCollisionDetectionActive) {
+            platforms.forEach((platform) => {
+                platform.position.x += 5;
+            });
+        }
     }
 
-    if (keys.rightKey.pressed && isCheckpointCollisionDetectionActive === true) {
-        
-    }
+    platforms.forEach((platform) => {});
 }
 
 const keys = {
