@@ -55,14 +55,11 @@ class Player {
             this.position.x = canvas.width - this.width * 2;
         }
     }
-}
+};
 
 class Platform {
     constructor (x,y) {
-        this.position = {
-            x,
-            y,
-        };
+        this.position = {x,y};
         this.width = 200;
         this.height = proportionalSize(40);
     }
@@ -70,11 +67,16 @@ class Platform {
         ctx.fillStyle = "#acd157";
         ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
-}
+};
 
 class CheckPoint {
-    constructor(x,y,z) {}
-}
+    constructor(x,y,z) {
+        this.position = {x,y};
+        this.width = proportionalSize(40);
+        this.height = proportionalSize(70);
+        this.claimed = false;
+    };
+};
 
 const player = new Player();
 
